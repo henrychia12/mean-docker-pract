@@ -1,8 +1,7 @@
-FROM node:12-slim
+FROM node:12-alpine
 WORKDIR /app
-COPY ./package.json /app
-RUN npm install
-RUN npm install -g @angular/cli@7.3.9
-COPY . /app
+COPY . .
+RUN NG_CLI_ANALYTICS=ci npm install -g @angular/cli
+RUN NG_CLI_ANALYTICS=ci npm install
 EXPOSE 4200
 CMD ng serve --host 0.0.0.0
